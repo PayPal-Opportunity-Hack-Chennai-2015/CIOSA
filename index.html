@@ -62,7 +62,7 @@
     <div class="container">
 		<div class="row">
 			<div class="col-md-6 col-md-offset-3">
-				<h1>Find, review and post about NGOs</h1>
+				<h1>Find and post about NGOs</h1>
 			</div>
 		</div>
         <div class="row">
@@ -78,7 +78,7 @@
 						
 						<span class="input-group-btn">
 						
-						<button type="button" class="btn btn-primary dropdown-toggle custom" data-toggle="dropdown">Location   <span class="caret"></span></button>
+						<button type="submit" class="btn btn-primary dropdown-toggle custom" data-toggle="dropdown" value="location" id="Lbtn">Location <span class="caret"></span></button>
 				<ul class="dropdown-menu pull-right" id="locations">
 					<li><a href="#">Action</a></li>
 					<li><a href="#">Another action</a></li>
@@ -88,7 +88,7 @@
 				</ul>
 			</span>
 			<span class="input-group-btn">
-				<button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">Category <span class="caret"></span></button>
+				<button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" id="Cbtn">Category <span class="caret"></span></button>
 				<ul class="dropdown-menu pull-right" id="categories">
 					<li><a href="#">Action</a></li>
 					<li><a href="#">Another action</a></li>
@@ -140,19 +140,26 @@
     <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>
 	<script>
-			var location;
-			var category;
+			var locationChoice="";
+			var categoryChoice="";
 			$(document).ready(function(){
 				populateFilters();
-				$('#locations li a').click(function(event){
-						location = event.target.text();
-									})
+				$('#locations li a').click(function(){
+					$('#Lbtn').html($(this).text());
+				    
+					locationChoice = $(this).text();
+					
+					
+					
+				
+				})
 				$('#categories li a').click(function(event){
-					category = event.target.text();
+					categoryChoice = $(this).text();
+					$('#Cbtn').html($(this).text());
 				})
 			});
 			function search(){
-				
+			    window.location = "C:/Users/somathew/Downloads/startbootstrap-shop-homepage-1.0.3/index.html?location="+locationChoice+"&category="+categoryChoice;
 			}
 			function populateFilters(){
 				/*var cities = getCities();

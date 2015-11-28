@@ -60,31 +60,31 @@
 					<form action="" method="get" role="search">
 						<div class="input-group input-group-lg">
 						
-						<span class="input-group-btn">
+												<span class="input-group-btn">
 						
-						<button type="button" class="btn btn-primary dropdown-toggle custom" data-toggle="dropdown">Location   <span class="caret"></span></button>
-				<ul class="dropdown-menu pull-right">
-					<!--<li><a href="#">Action</a></li>
+						<button type="submit" class="btn btn-primary dropdown-toggle custom" data-toggle="dropdown" value="location" id="Lbtn">Location <span class="caret"></span></button>
+				<ul class="dropdown-menu pull-right" id="locations">
+					<li><a href="#">Action</a></li>
+					<li><a href="#">Another action</a></li>
+					<li><a href="#">Something else here</a></li>
+					
+					<li><a href="#">Separated link</a></li>
+				</ul>
+			</span>
+			<span class="input-group-btn">
+				<button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" id="Cbtn">Category <span class="caret"></span></button>
+				<ul class="dropdown-menu pull-right" id="categories">
+					<li><a href="#">Action</a></li>
 					<li><a href="#">Another action</a></li>
 					<li><a href="#">Something else here</a></li>
 					<li class="divider"></li>
-					<li><a href="#">Separated link</a></li>-->
+					<li><a href="#">Separated link</a></li>
 				</ul>
 			</span>
-			<span class="input-group-btn" >
-				<button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">Category <span class="caret"></span></button>
-				<ul class="dropdown-menu pull-right">
-					<!--<li><a href="#">Action</a></li>
-					<li><a href="#">Another action</a></li>
-					<li><a href="#">Something else here</a></li>
-					<li class="divider"></li>
-					<li><a href="#">Separated link</a></li>-->
-				</ul>
-			</span>
-			<input type="text" name="query" class="form-control" placeholder="Search by name">
+			<input type="text" name="query" class="form-control" placeholder="Search by name"  >
 			<span class="input-group-btn">
 						
-						<button type="button" class="btn btn-primary dropdown-toggle custom" data-toggle="dropdown">Search</button>
+						<button type="button" class="btn btn-primary dropdown-toggle custom" data-toggle="dropdown" onclick="search()">Search</button>
 				
 			</span>
 		</div>
@@ -184,17 +184,33 @@
     <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>
 	<script>
+			var locationChoice="";
+			var categoryChoice="";
 			$(document).ready(function(){
 				populateSuggestions();
+				$('#locations li a').click(function(){
+					$('#Lbtn').html($(this).text());
+				    
+					locationChoice = $(this).text();
+					
+					
+					
+				
+				})
+				$('#categories li a').click(function(event){
+					categoryChoice = $(this).text();
+					$('#Cbtn').html($(this).text());
+				})
 			});
+			function search(){
+			    window.location = "C:/Users/somathew/Downloads/startbootstrap-shop-homepage-1.0.3/admin.html?location="+locationChoice+"&category="+categoryChoice;
+			}
 			function populateSuggestions(){
 				//var suggestions = getSuggestions();
 				suggestions = ['a','a','a'];
 				for(var i=0; i< suggestions.length;i++){
+					$('#suggestionsList').append('<a href="#" class="list-group-item">'+suggestions[i]+'</a>')
 					
-					var listitem = document.createElement('a');
-					$('#suggestionsList a').last().attr('href','#');
-					$('#suggestionsList a').last().innerHtml(suggestions[i]);
 					
 				}
 				

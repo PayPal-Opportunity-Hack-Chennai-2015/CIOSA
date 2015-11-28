@@ -8,3 +8,13 @@ Requirements
 3. Admin account for CRUD operations
 4. Suggest a new NGO
 5. NGO account for CRUD operations
+
+
+Team 
+1. Jayapradha V R
+2. Jayasruthi V R 
+3. Amit P K
+4. Abil George
+5. Sonia Mathew
+6. Manish Prajapati
+7. Aishwarya Kaneri

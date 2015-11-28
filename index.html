@@ -160,15 +160,7 @@
 			var name="";
 			$(document).ready(function(){
 				populateFilters();
-				$('#locations li a').click(function(){
-					$('#Lbtn').html($(this).text());
-				    
-					locationChoice = $(this).text();
-					
-					
-					
 				
-				})
 				$('#categories li a').click(function(event){
 					categoryChoice = $(this).text();
 					$('#Cbtn').html($(this).text());
@@ -180,9 +172,9 @@
 			}
 			function search(){
 				var input = $('#pac-input').val();
- 
+				
 
-			   window.location = "listing.html?location="+locationChoice+"&category="+categoryChoice+"&name="+input;
+			   window.location = "listing.html?location="+input+"&category="+categoryChoice+"&name="+name;
 			}
 			function populateFilters(){
 				/*var cities = getCities();

@@ -15,7 +15,7 @@
     <link href="css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom CSS -->
-    <link href="css/homepage.css" rel="stylesheet">
+    <link href="css/shop-homepage.css" rel="stylesheet">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -68,7 +68,7 @@
 
            
 
-            <div class="col-md-12" >
+            <div class="col-md-12">
 
                 <div>
 				<br>
@@ -79,14 +79,12 @@
       <input type="text" class="form-control" id="name" placeholder="Enter email">
     </div>
   </div>
-   <div class="form-group">
+  <div class="form-group">
     <label class="control-label col-sm-2" for="category">Category</label>
     <div class="col-sm-10">
       <input type="text" class="form-control" id="category" placeholder="Enter categories">
     </div>
   </div>
- 
-
   <div class="form-group">
     <label class="control-label col-sm-2" for="line1">Address Line1</label>
     <div class="col-sm-10"> 
@@ -186,50 +184,6 @@
     <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>
 	<script type="text/javascript">
-	var getUrlParameter = function getUrlParameter(sParam) {
-    var sPageURL = decodeURIComponent(window.location.search.substring(1)),
-        sURLVariables = sPageURL.split('&'),
-        sParameterName,
-        i;
-
-    for (i = 0; i < sURLVariables.length; i++) {
-        sParameterName = sURLVariables[i].split('=');
-
-        if (sParameterName[0] === sParam) {
-            return sParameterName[1] === undefined ? true : sParameterName[1];
-        }
-    }
-};
-	$( document ).ready(function() {
-	var param=getUrlParameter('id');
-	
-	var myUrl='http://lm-maa-26500421.paypalcorp.com:9200/sahayak/ngodetails/';
-	myUrl=myUrl.concat(param);
-	myUrl = myUrl.toString().replace(/"/g, "");
-	//alert(myUrl);
-	
-    $.ajax({
-            url: myUrl,
-            type: 'get',
-            dataType: 'json',
-            success: function (data) {
-			//alert();
-			$("#name").val(data._source.phone);
-			$("#line1").val(data._source.line1);
-			$("#line2").val(data._source.line2);
-			$("#area").val(data._source.area);
-			$("#city").val(data._source.city);
-			$("#state").val(data._source.state);
-			$("#poc").val(data._source.poc);
-			$("#phone").val(data._source.phone);
-			$("#email").val(data._source.email);
-			$("#website").val(data._source.website);
-			$("#description").val(data._source.desc);
-    
-            }
-            
-        });
-});
 $("#add_suggestion").click(function(){
     
 	
@@ -255,7 +209,7 @@ $("#add_suggestion").click(function(){
   "website": $("#website_url").val(),
   "desc": $("#description").val(),
   "categories": [
-    1
+    $("#category").val()
   ]
 }
 	 $.ajax({

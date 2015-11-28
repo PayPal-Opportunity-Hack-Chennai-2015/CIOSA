@@ -16,6 +16,9 @@
 
     <!-- Custom CSS -->
     <link href="css/homepage.css" rel="stylesheet">
+	<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places"></script>
+
+
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -51,6 +54,9 @@
                     <li>
                         <a href="#">Contact</a>
                     </li>
+					 <li>
+                        <a href="add_suggestions.html">Suggest an NGO</a>
+                    </li>
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
@@ -76,7 +82,7 @@
 					<form action="" method="get" role="search">
 						<div class="input-group input-group-lg">
 						
-						<span class="input-group-btn">
+						<!--<span class="input-group-btn">
 						
 						<button type="submit" class="btn btn-primary dropdown-toggle custom" data-toggle="dropdown" value="location" id="Lbtn">Location <span class="caret"></span></button>
 				<ul class="dropdown-menu pull-right" id="locations">
@@ -86,7 +92,7 @@
 					
 					<li><a href="#">Separated link</a></li>
 				</ul>
-			</span>
+			</span>-->
 			<span class="input-group-btn">
 				<button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" id="Cbtn">Category <span class="caret"></span></button>
 				<ul class="dropdown-menu pull-right" id="categories">
@@ -97,7 +103,9 @@
 					<li><a href="#">Separated link</a></li>
 				</ul>
 			</span>
-			<input type="text" name="query" class="form-control" placeholder="Search by name">
+			<input id="pac-input" class="form-control controls" type="text" placeholder="Enter location" style="width:50%" onfocus="googleSearch()"/>
+
+			<input type="text" name="query" class="form-control" placeholder="Search by name" id="searchName" style="width:50%">
 			<span class="input-group-btn">
 						
 						<button type="button" class="btn btn-primary dropdown-toggle custom" data-toggle="dropdown" onclick="search()">Search</button>
@@ -114,6 +122,13 @@
             </div>
 
         </div>
+		
+		<div class="row" id="ngo_list">
+
+
+
+             
+		</div>
 
     </div>
     <!-- /.container -->
@@ -142,6 +157,7 @@
 	<script>
 			var locationChoice="";
 			var categoryChoice="";
+			var name="";
 			$(document).ready(function(){
 				populateFilters();
 				$('#locations li a').click(function(){
@@ -158,8 +174,15 @@
 					$('#Cbtn').html($(this).text());
 				})
 			});
+			function googleSearch(){
+				var input = document.getElementById('pac-input');
+				var searchBox = new google.maps.places.SearchBox(input);
+			}
 			function search(){
-			    window.location = "C:/Users/somathew/Downloads/startbootstrap-shop-homepage-1.0.3/index.html?location="+locationChoice+"&category="+categoryChoice;
+				var input = $('#pac-input').val();
+ 
+
+			   window.location = "listing.html?location="+locationChoice+"&category="+categoryChoice+"&name="+input;
 			}
 			function populateFilters(){
 				/*var cities = getCities();
@@ -177,6 +200,7 @@
 				
 			}
 			
+
 		</script>
 
 </body>

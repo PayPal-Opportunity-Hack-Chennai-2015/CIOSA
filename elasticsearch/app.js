@@ -35,12 +35,15 @@ function allowed(ip,url,method) {
 	if(url.indexOf("login") > -1) {
 		return false;
 	}
-
+	
 	if(method=='DELETE' || method=='PUT'){
 		return false;
 	}
 	if(method=='POST'){
 		if(url.indexOf("/_search") > -1){
+			return true;
+		}
+		if(url.indexOf("temp_ngodetails") > -1) {
 			return true;
 		}
 		return false;

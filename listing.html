@@ -46,34 +46,6 @@
 
 
 <script>
-/*var xmlhttp = new XMLHttpRequest();
-var url = "http://lm-maa-26500421.paypalcorp.com:9200/sahayak/ngodetails/_search";
-var NGO_ID = "";
-xmlhttp.onreadystatechange = function() {
-    if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-        var myArr = JSON.parse(xmlhttp.responseText);
-		console.log(myArr);
-        populateList(myArr);
-    }
-};
-xmlhttp.open("GET", url, true);
-xmlhttp.send();
-
-function myFunction(arr) {
-    var address = "";
-	var phone = "";
-	var mail = "";
-	var id = "";
-    var i;
-    for(i = 0; i < arr.length; i++) {
-        address = arr[i]._source.website;
-		phone = arr[i]._source.phone;
-		mail = arr[i]._source.email;
-		id = arr[i]._id;
-		document.getElementById("add"+i).innerHTML = address;
-		document.getElementById("link"+i).href = "ngo.html?ngo_id="+id;
-    }
-}*/
 
 function parseURLParams(url) {
     var queryStart = url.indexOf("?") + 1,
@@ -99,7 +71,7 @@ function parseURLParams(url) {
     }
     return parms;
 }
-
+/*
 var xmlhttp = new XMLHttpRequest();
 xmlhttp.onreadystatechange = function() {
     if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
@@ -107,7 +79,7 @@ xmlhttp.onreadystatechange = function() {
 		console.log(JsonObj);
         populateList(JsonObj);
     }
-};
+};*/
 
 function init(){
 
@@ -116,16 +88,23 @@ var param = parseURLParams(href);
 var searchLocation = param['location'][0] ;
 
 var category = param['category'][0] ;
-var name = param['name'][0]+ '*' ;
-var url = "http://lm-maa-26500421.paypalcorp.com:8080/sahayak/ngodetails/_search/?q="+name;
+var name = param['name'][0];
+var url = "http://lm-maa-26500421.paypalcorp.com:8080/sahayak/ngodetails/_search";
+/*if(name!="") {
+	url = url+"?q=name:"+name+"*";
+}*/
 //url = url + location + ' ' + category + ' ' + name;
-//console.log(url);
+console.log(url);
 //xmlhttp.open("GET", url, true);
 //xmlhttp.send();
 var data = '{"query": {    "filtered" : {        "query" : {            "bool": {                "should": [';
-
+if(name != ""){
+	data = data + '{ "match": { "name": "'+name+'"}}';
+}
 if(category !="") {
-	
+	if(name != ""){
+		data = data + ',';
+	}
 	data = data + '{ "match": { "category": "'+category+'"}}';
 }
 data=data + "] } }";
@@ -151,6 +130,7 @@ console.log(data);
 
 function populateList(data){
         var data = data.hits.hits;
+		console.log("My data"+JSON.stringify(data));
         for(var i=0; i< data.length;i++){
 		  if(typeof data[i]._source.address !=='undefined')
 		  {

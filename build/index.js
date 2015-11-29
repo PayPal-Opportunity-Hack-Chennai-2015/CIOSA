@@ -123,35 +123,24 @@
     var getQueryTemplate = function(lat,lon,dist){ 
     	App.Log(lat+" : " + lon);
     	var query = {
-    		"sort" : [
-    		{
-    			"_geo_distance" : {
-    				"location" : {
-    					"lat" : lat,
-    					"lon" : lon
-    				}, 
-    				"order" : "asc",
-    				"unit" : "km"
-    			}
-    		}
-    		],
-    		"query":{
-    			"filtered" : {
-    				"query" : {
-    					"match_all" : {}
-    				},
-    				"filter" : {
-    					"geo_distance" : {
-    						"distance" : dist+"km",
-    						"location" : {
-    							"lat" : lat,
-    							"lon" : lon
-    						}
-    					}
-    				}
-    			}
-
-    		}
+  "query": {
+    "filtered": {
+      "query": {
+        "bool": {
+          "should": []
+        }
+      },
+      "filter": {
+        "geo_distance": {
+          "distance": "10km",
+          "location": {
+            "lat": lat,
+            "lon": lon
+          }
+        }
+      }
+    }
+}
     	}
     	/* == If filter is applied then modify query. == */
     	

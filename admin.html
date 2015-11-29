@@ -39,7 +39,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#" style="font-size:20px">Sahayak</a>
+                <a class="navbar-brand" href="index.html">Sahayak</a>
             </div>
             
         </div>
@@ -48,117 +48,63 @@
 
     <!-- Page Content -->
     <div class="container">
-		
+        
         <div class="row">
 
            
-
-            <div class="col-md-12">
-				
+                
+           <div class="col-md-12">
+                
                 <div>
-				<br>
-					<form action="" method="get" role="search">
-						<div class="input-group input-group-lg">
-						
-												<span class="input-group-btn">
-						
-						<button type="submit" class="btn btn-primary dropdown-toggle custom" data-toggle="dropdown" value="location" id="Lbtn">Location <span class="caret"></span></button>
-				<ul class="dropdown-menu pull-right" id="locations">
-					<li><a href="#">Action</a></li>
-					<li><a href="#">Another action</a></li>
-					<li><a href="#">Something else here</a></li>
-					
-					<li><a href="#">Separated link</a></li>
-				</ul>
-			</span>
-			<span class="input-group-btn">
-				<button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" id="Cbtn">Category <span class="caret"></span></button>
-				<ul class="dropdown-menu pull-right" id="categories">
-					<li><a href="#">Action</a></li>
-					<li><a href="#">Another action</a></li>
-					<li><a href="#">Something else here</a></li>
-					<li class="divider"></li>
-					<li><a href="#">Separated link</a></li>
-				</ul>
-			</span>
-			<input type="text" name="query" class="form-control" placeholder="Search by name"  >
-			<span class="input-group-btn">
-						
-						<button type="button" class="btn btn-primary dropdown-toggle custom" data-toggle="dropdown" onclick="search()">Search</button>
-				
-			</span>
-		</div>
-	</form>
-</div>
+                <br>
+                    <form action="" method="get" role="search" id="form_search">
+                        <div class="input-group input-group-lg">
+            <span class="input-group-btn">
+                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" id="Cbtn">Category <span class="caret"></span></button>
+                <ul class="dropdown-menu pull-right" id="categories">
+                    <li><a href="#">Women</a></li>
+                    <li><a href="#">Children</a></li>
+                    <li><a href="#">Community</a></li>                  
+                    <li><a href="#">Disability</a></li>
+                </ul>
+            </span>
+            <input type="text" name="query" class="form-control" placeholder="Search by name" id="searchName" style="width:100%">
+            <span class="input-group-btn">
+                        
+                        <button type="submit" class="btn btn-default dropdown-toggle custom" data-toggle="dropdown" onclick="search()" id="searchName">Search</button>
+                
+            </span>
+        </div>
+    </form>
+                        
+               
 
-						
+            </div>
+
+                        
 
                
 
             </div>
 
         </div>
-	<div class="row" style="margin-top:20px">
-	<div class="col-md-12">
+    <div class="row" style="margin-top:20px">
+    <div class="col-md-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            <i class="fa fa-bell fa-fw"></i> Suggestions
+                            <i class="fa fa-bell fa-fw" id="list_title">Suggestions</i>
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
                             <div class="list-group" id="suggestionsList">
-                                <!--<a href="#" class="list-group-item">
-                                    <i class="fa fa-comment fa-fw"></i> New Comment
-                                    <span class="pull-right text-muted small"><em>4 minutes ago</em>
-                                    </span>
-                                </a>
-                                <a href="#" class="list-group-item">
-                                    <i class="fa fa-twitter fa-fw"></i> 3 New Followers
-                                    <span class="pull-right text-muted small"><em>12 minutes ago</em>
-                                    </span>
-                                </a>
-                                <a href="#" class="list-group-item">
-                                    <i class="fa fa-envelope fa-fw"></i> Message Sent
-                                    <span class="pull-right text-muted small"><em>27 minutes ago</em>
-                                    </span>
-                                </a>
-                                <a href="#" class="list-group-item">
-                                    <i class="fa fa-tasks fa-fw"></i> New Task
-                                    <span class="pull-right text-muted small"><em>43 minutes ago</em>
-                                    </span>
-                                </a>
-                                <a href="#" class="list-group-item">
-                                    <i class="fa fa-upload fa-fw"></i> Server Rebooted
-                                    <span class="pull-right text-muted small"><em>11:32 AM</em>
-                                    </span>
-                                </a>
-                                <a href="#" class="list-group-item">
-                                    <i class="fa fa-bolt fa-fw"></i> Server Crashed!
-                                    <span class="pull-right text-muted small"><em>11:13 AM</em>
-                                    </span>
-                                </a>
-                                <a href="#" class="list-group-item">
-                                    <i class="fa fa-warning fa-fw"></i> Server Not Responding
-                                    <span class="pull-right text-muted small"><em>10:57 AM</em>
-                                    </span>
-                                </a>
-                                <a href="#" class="list-group-item">
-                                    <i class="fa fa-shopping-cart fa-fw"></i> New Order Placed
-                                    <span class="pull-right text-muted small"><em>9:49 AM</em>
-                                    </span>
-                                </a>
-                                <a href="#" class="list-group-item">
-                                    <i class="fa fa-money fa-fw"></i> Payment Received
-                                    <span class="pull-right text-muted small"><em>Yesterday</em>
-                                    </span>
-                                </a>-->
+                             
                             </div>
                             <!-- /.list-group -->
                             
                         </div>
                         <!-- /.panel-body -->
                     </div>
-	</div>
+    </div>
     </div>
     <!-- /.container -->
 
@@ -183,49 +129,86 @@
 
     <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>
-	<script>
-			var locationChoice="";
-			var categoryChoice="";
-			$(document).ready(function(){
-				populateSuggestions();
-				$('#locations li a').click(function(){
-					$('#Lbtn').html($(this).text());
-				    
-					locationChoice = $(this).text();
-					
-					
-					
-				
-				})
-				$('#categories li a').click(function(event){
-					categoryChoice = $(this).text();
-					$('#Cbtn').html($(this).text());
-				})
-			});
-			function search(){
-			    window.location = "C:/Users/somathew/Downloads/startbootstrap-shop-homepage-1.0.3/admin.html?location="+locationChoice+"&category="+categoryChoice;
-			}
-			function populateSuggestions(){
-				var myUrl='http://lm-maa-26500421.paypalcorp.com:9200/sahayak/temp_ngodetails/_search';
-				$.ajax({
+    <script>
+            var locationChoice = "";
+            var categoryChoice = "";
+            $(document).ready(function() {
+                populateSuggestions();
+                $('#locations li a').click(function() {
+                    $('#Lbtn').html($(this).text());
+
+                    locationChoice = $(this).text();
+
+
+
+
+                })
+                $('#categories li a').click(function(event) {
+                    categoryChoice = $(this).text();
+                    $('#Cbtn').html($(this).text());
+                })
+            });
+
+            function search() {
+                var category = $('#Cbtn').val();
+                var name = $('#searchName').val() + '*';
+				var searchLocation = "";
+                var url = "http://lm-maa-26500421.paypalcorp.com:8080/sahayak/ngodetails/_search/?q=" + name;
+                var data = '{"query": {    "filtered" : {        "query" : {            "bool": {                "should": [';
+
+                if (category != "") {
+
+                    data = data + '{ "match": { "category": "' + category + '"}}';
+                }
+                data = data + "] } }";
+                if (searchLocation != "") {
+                    var coords = searchLocation.split(" ");
+                    data = data + ',"filter" : {  "geo_distance" : {  "distance" : "10km","location": { "lat": ' + coords[0] + ', "lon":' + coords[1] + '}}}'
+                }
+                data = data + "  } }}";
+                console.log(data);
+
+                $.ajax({
+                    url: url,
+                    type: 'post',
+                    dataType: 'json',
+                    success: function(data) {
+                        if (!data.hits.hits) {
+                            alert("No Data Found");
+                        } else {
+							$('#suggestionsList').empty();
+							$('#list_title').html("Results");
+                            suggestions = data.hits.hits;
+                            for (var i = 0; i < suggestions.length; i++) {
+                                $('#suggestionsList').append('<a href="edit_ngo.html?id=' + suggestions[i]._id + '" class="list-group-item" id=' + suggestions[i]._id + '>' + suggestions[i]._source.name + '</a>');
+                            }
+                        }
+                    },
+                    data: data
+                });
+
+            }
+
+            function populateSuggestions() {
+                var myUrl = 'http://lm-maa-26500421.paypalcorp.com:9200/sahayak/temp_ngodetails/_search';
+                $.ajax({
                     url: myUrl,
                     type: 'GET',
                     dataType: 'json',
-                    success: function (data) {
-						if(!data.hits.hits) {
-							alert("No Data Found");
-						} else {
-							suggestions = data.hits.hits;
-							for(var i=0; i< suggestions.length;i++){
-								$('#suggestionsList').append('<a href="approve_ngo.html?id='+suggestions[i]._id+'" class="list-group-item" id='+suggestions[i]._id+'>'+suggestions[i]._source.name+'</a>');
-							}
-						}
-					}
-				});
-				
-			}
-			
-		</script>
+                    success: function(data) {
+                        if (!data.hits.hits) {
+                            alert("No Data Found");
+                        } else {
+                            suggestions = data.hits.hits;
+                            for (var i = 0; i < suggestions.length; i++) {
+                                $('#suggestionsList').append('<a href="approve_ngo.html?id=' + suggestions[i]._id + '" class="list-group-item" id=' + suggestions[i]._id + '>' + suggestions[i]._source.name + '</a>');
+                            }
+                        }
+                    }
+                });
+
+            }
+    </script>
 
 </body>
 

@@ -96,7 +96,7 @@ function myFunction(JsonObj) {
 </script>
 <style>
 	body {
-				background: url(http://thumbs.dreamstime.com/z/old-grunge-paper-background-hands-holding-19124212.jpg) no-repeat center center fixed; 
+				background: url(img/background.jpg) no-repeat center center fixed; 
   -		webkit-background-size: cover;
 		-moz-background-size: cover;
 		-o-background-size: cover;
@@ -134,20 +134,20 @@ padding-top: 15px;
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Modal Header</h4>
+        <h4 class="modal-title">About Us</h4>
       </div>
-      <div class="modal-body">
-        <p>Some text in the modal.</p>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      <div class="modal-body text-center">
+						<h4 id="desc" class="text-center">Confederation of Indian Organisations For Service And Advocacy. A platform where people meet, share, raise voice, find resources for a better world.</h4><br>
+						<span class="glyphicon glyphicon-earphone" aria-hidden="true"></span>&nbsp&nbsp<h4 style="display:inline-block"><b>Phone:</b></h4>&nbsp&nbsp<h4 style="display:inline-block">65515921</h4><br>
+						<span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>&nbsp&nbsp<h4 style="display:inline-block"><b>Email:</b></h4>&nbsp&nbsp<h4 style="display:inline-block">mail@ciosa.org.in</h4><br>
+						<span class="glyphicon glyphicon-globe" aria-hidden="true"></span>&nbsp&nbsp<h4 style="display:inline-block"><b>Website:</b></h4>&nbsp&nbsp<h4 style="display:inline-block"><a href="http://www.ciosa.org.in">www.ciosa.org.in</a></h4><br>
       </div>
     </div>
 
   </div>
 </div>
     <!-- Navigation -->
-    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation" style="z-index:1">
         <div class="container">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
@@ -157,13 +157,16 @@ padding-top: 15px;
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">Sahayak</a>
+                <a class="navbar-brand" href="index.html" style="font-size:20px">Sahayak</a>
             </div>
+			<div>
+			  <a class="navbar-brand navbar-right" href="#" style="font-size:20px" data-toggle="modal" data-target="#myModal">CIOSA</a>
+			</div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
-                    <li>
-                        <a href="#my" data-target="#myModal" data-toggle="modal">About</a>
+					 <li>
+                        <a href="add_suggestions.html">Suggest an NGO</a>
                     </li>
                 </ul>
             </div>
@@ -226,7 +229,7 @@ padding-top: 15px;
                 <div class="panel panel-default">
                     <div class="text-center panel-header">Our Office</div>
                     <div class="panel-body text-center">
-                        <span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span>&nbsp&nbsp<h4 style="display:inline-block"><b>Address</b></h4><hr/>
+                        <span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span>&nbsp&nbsp<h4 style="display:inline-block"><b>Address</b></h4>
                         <h4 id="address"></h4><hr/>
                         <div id="map1" class="map">
                         </div>

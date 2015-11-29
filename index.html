@@ -26,13 +26,47 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+<style>
+	.jumbotron {
+				background: url(img/cover2.jpg) no-repeat center center fixed; 
+  -		webkit-background-size: 100% 100%;
+		-moz-background-size: 100% 100%;
+		-o-background-size: 100% 100%;
+		background-size: 100% 100%;
+		height:400px;
+		opacity: 0.9;
+	}
+	.caption{
+	  background-color: rgba(255, 255, 255, 0.5);
+	  padding: 10px;
+	  height=40px;
+	}
 
+</style>
 </head>
 
 <body>
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
 
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">About Us</h4>
+      </div>
+      <div class="modal-body text-center">
+						<h4 id="desc" class="text-center">Confederation of Indian Organisations For Service And Advocacy. A platform where people meet, share, raise voice, find resources for a better world.</h4><br>
+						<span class="glyphicon glyphicon-earphone" aria-hidden="true"></span>&nbsp&nbsp<h4 style="display:inline-block"><b>Phone:</b></h4>&nbsp&nbsp<h4 id="phone" style="display:inline-block">65515921</h4><br>
+						<span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>&nbsp&nbsp<h4 style="display:inline-block"><b>Email:</b></h4>&nbsp&nbsp<h4 id="email" style="display:inline-block">mail@ciosa.org.in</h4><br>
+						<span class="glyphicon glyphicon-globe" aria-hidden="true"></span>&nbsp&nbsp<h4 style="display:inline-block"><b>Website:</b></h4>&nbsp&nbsp<h4 style="display:inline-block"><a id="website" href="http://www.ciosa.org.in">www.ciosa.org.in</a></h4><br>
+      </div>
+    </div>
+
+  </div>
+</div>
     <!-- Navigation -->
-    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation" style="z-index:1">
         <div class="container">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
@@ -44,16 +78,12 @@
                 </button>
                 <a class="navbar-brand" href="#" style="font-size:20px">Sahayak</a>
             </div>
+			<div>
+			  <a class="navbar-brand navbar-right" href="#" style="font-size:20px" data-toggle="modal" data-target="#myModal">CIOSA</a>
+			</div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
-                    <li>
-                        <a href="#">About</a>
-                    </li>
-                    
-                    <li>
-                        <a href="#">Contact</a>
-                    </li>
 					 <li>
                         <a href="add_suggestions.html">Suggest an NGO</a>
                     </li>
@@ -65,19 +95,10 @@
     </nav>
 
     <!-- Page Content -->
-    <div class="container">
-		<div class="row">
-			<div class="col-md-6 col-md-offset-3">
-				<h1>Find and post about NGOs</h1>
-			</div>
-		</div>
-        <div class="row">
-
-           
-
-            <div class="col-md-12">
-				
+		<div class="jumbotron">
+			<div class=container>
                 <div>
+				<br>
 				<br>
 					<form action="" method="get" role="search">
 						<div class="input-group input-group-lg">
@@ -94,12 +115,11 @@
 				</ul>
 			</span>-->
 			<span class="input-group-btn">
-				<button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" id="Cbtn">Category <span class="caret"></span></button>
+				<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" id="Cbtn">Category <span class="caret"></span></button>
 				<ul class="dropdown-menu pull-right" id="categories">
 					<li><a href="#">Women</a></li>
 					<li><a href="#">Children</a></li>
-					<li><a href="#">Community</a></li>
-					
+					<li><a href="#">Community</a></li>					
 					<li><a href="#">Disability</a></li>
 				</ul>
 			</span>
@@ -108,46 +128,49 @@
 			<input type="text" name="query" class="form-control" placeholder="Search by name" id="searchName" style="width:50%">
 			<span class="input-group-btn">
 						
-						<button type="button" class="btn btn-primary dropdown-toggle custom" data-toggle="dropdown" onclick="search()" id="searchName">Search</button>
+						<button type="button" class="btn btn-default dropdown-toggle custom" data-toggle="dropdown" onclick="search()" id="searchName">Search</button>
 				
 			</span>
 		</div>
 	</form>
 </div>
+</div>
+</div>
 
-						
-
-               
-
+<div class="container">
+  <div class="row">
+    <div class="col-md-4">
+	  <div class="thumbnail">
+	    <img src="img/tree1.jpg"/>
+	  </div>
+	  <div class="caption">
+		<h4><i><b>Heal the world, make it a better place;</i></b></h4>
+		<h4><i><b>A better place for you and for me!</i></b></h4>
+		<h5><b>-Michael Jackson</b></h5>
+	  </div>
+	</div>
+    <div class="col-md-4">
+	  <div class="thumbnail">
+	    <img src="https://brettfish.files.wordpress.com/2012/10/giving-hands.jpg" />
+	  </div>
+	  <div class="caption">
+		<h4><i><b>No one has ever become poor,</i></b></h4>
+		<h4><i><b>by giving!</i></b></h4>
+		<h5><b>-Anne Frank</b></h5>
+	  </div>
+	</div>
+    <div class="col-md-4">
+	  <div class="thumbnail">
+	    <img src="img/women.jpg" />
+	  </div>
+	  <div class="caption">
+		<h4><i><b>I'm a woman, Phenomenally.</i></b></h4>
+		<h4><i><b>Phenomenal woman, That's me!</i></b></h4>
+		<h5><b>-Maya Angelou</b></h5>
+	  </div>
+	</div>
             </div>
-
-        </div>
-		
-		<div class="row" id="ngo_list">
-
-
-
-             
-		</div>
-
-    </div>
-    <!-- /.container -->
-
-    <!--<div class="container">
-
-        <hr>
-
-       
-        <footer>
-            <div class="row">
-                <div class="col-lg-12">
-                    <p>Copyright &copy; Your Website 2014</p>
-                </div>
-            </div>
-        </footer>
-
-    </div>-->
-    <!-- /.container -->
+	</div>
 
     <!-- jQuery -->
     <script src="js/jquery.js"></script>
@@ -198,9 +221,8 @@
 				for(var i=0; i< cities.length;i++){
 					
 					$('#cityList').append('<li>'+cities[i]+'</li>');
-				}*/
-				
-			  /*var categories = getCategories();
+				}
+				//var categories = getCategories();
 				
 				for(var i=0; i< categories.length;i++){
 					
@@ -211,6 +233,8 @@
 			
 
 		</script>
+		
+
 
 </body>
 

@@ -27,38 +27,25 @@
 	.panel {
 	   height: 222px;
 	}
+	    .map {
+        min-width: 300px;
+        min-height: 400px;
+        width: 100%;
+        height: 100%;
+    }
 	</style>
+	    <!-- jQuery -->
+    <script src="js/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+<!-- <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="css/styles.css">
+	<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places"></script> -->
 </head>
 
-<script>
-/*var xmlhttp = new XMLHttpRequest();
-var url = "http://lm-maa-26500421.paypalcorp.com:9200/sahayak/ngodetails/_search";
-var NGO_ID = "";
-xmlhttp.onreadystatechange = function() {
-    if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-        var myArr = JSON.parse(xmlhttp.responseText);
-		console.log(myArr);
-        populateList(myArr);
-    }
-};
-xmlhttp.open("GET", url, true);
-xmlhttp.send();
 
-function myFunction(arr) {
-    var address = "";
-	var phone = "";
-	var mail = "";
-	var id = "";
-    var i;
-    for(i = 0; i < arr.length; i++) {
-        address = arr[i]._source.website;
-		phone = arr[i]._source.phone;
-		mail = arr[i]._source.email;
-		id = arr[i]._id;
-		document.getElementById("add"+i).innerHTML = address;
-		document.getElementById("link"+i).href = "ngo.html?ngo_id="+id;
-    }
-}*/
+<script>
 
 function parseURLParams(url) {
     var queryStart = url.indexOf("?") + 1,
@@ -84,7 +71,7 @@ function parseURLParams(url) {
     }
     return parms;
 }
-
+/*
 var xmlhttp = new XMLHttpRequest();
 xmlhttp.onreadystatechange = function() {
     if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
@@ -92,7 +79,7 @@ xmlhttp.onreadystatechange = function() {
 		console.log(JsonObj);
         populateList(JsonObj);
     }
-};
+};*/
 
 function init(){
 
@@ -101,16 +88,23 @@ var param = parseURLParams(href);
 var searchLocation = param['location'][0] ;
 
 var category = param['category'][0] ;
-var name = param['name'][0]+ '*' ;
-var url = "http://lm-maa-26500421.paypalcorp.com:9200/sahayak/ngodetails/_search/?q="+name;
+var name = param['name'][0];
+var url = "http://lm-maa-26500421.paypalcorp.com:8080/sahayak/ngodetails/_search";
+/*if(name!="") {
+	url = url+"?q=name:"+name+"*";
+}*/
 //url = url + location + ' ' + category + ' ' + name;
-//console.log(url);
+console.log(url);
 //xmlhttp.open("GET", url, true);
 //xmlhttp.send();
 var data = '{"query": {    "filtered" : {        "query" : {            "bool": {                "should": [';
-
+if(name != ""){
+	data = data + '{ "match": { "name": "'+name+'"}}';
+}
 if(category !="") {
-	
+	if(name != ""){
+		data = data + ',';
+	}
 	data = data + '{ "match": { "category": "'+category+'"}}';
 }
 data=data + "] } }";
@@ -136,9 +130,13 @@ console.log(data);
 
 function populateList(data){
         var data = data.hits.hits;
+		console.log("My data"+JSON.stringify(data));
         for(var i=0; i< data.length;i++){
-		  
-          $('#ngo_list').append('<div class="col-sm-4 col-lg-4 col-md-4"><div class="panel panel-success"><div class="panel-heading"><h4><a  href="ngo.html?ngo_id='+ data[i]._id+'">'+data[i]._source.name+'</a></h4></div><div class="panel-body"><span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span>&nbsp<p style="display:inline-block">'+ data[i]._source.address.area + ', ' + data[i]._source.address.city + '</p> <br><span class="glyphicon glyphicon-earphone" aria-hidden="true"></span>&nbsp<p style="display:inline-block">'+ data[i]._source.phone +'</p> <br><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>&nbsp<p style="display:inline-block">'+ data[i]._source.email+'</p><br><span class="glyphicon glyphicon-globe" aria-hidden="true"></span>&nbsp<p style="display:inline-block">'+ data[i]._source.website+'</p></div></div></div>')     
+		  if(typeof data[i]._source.address !=='undefined')
+		  {
+		
+          $('#ngo_list').append('<div class="col-sm-4 col-lg-4 col-md-4"><div class="panel panel-success"><div class="panel-header"><h4><a  href="ngo.html?ngo_id='+ data[i]._id+'">'+data[i]._source.name+'</a></h4></div><div class="panel-body"><span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span>&nbsp<p style="display:inline-block">'+ data[i]._source.address.area + ', ' + data[i]._source.address.city + '</p> <br><span class="glyphicon glyphicon-earphone" aria-hidden="true"></span>&nbsp<p style="display:inline-block">'+ data[i]._source.phone +'</p> <br><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>&nbsp<p style="display:inline-block"><a href="mailto:'+ data[i]._source.email+'?Subject=Query">'+data[i]._source.email+'</a></p><br><span class="glyphicon glyphicon-globe" aria-hidden="true"></span>&nbsp<p style="display:inline-block"><a href="http://'+ data[i]._source.website+'">'+data[i]._source.website+'</a></p></div></div></div>')  
+			}		  
         }
       }
 
@@ -151,20 +149,20 @@ function populateList(data){
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Modal Header</h4>
+        <h4 class="modal-title">About Us</h4>
       </div>
-      <div class="modal-body">
-        <p>Some text in the modal.</p>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      <div class="modal-body text-center">
+						<h4 id="desc" class="text-center">Confederation of Indian Organisations For Service And Advocacy. A platform where people meet, share, raise voice, find resources for a better world.</h4><br>
+						<span class="glyphicon glyphicon-earphone" aria-hidden="true"></span>&nbsp&nbsp<h4 style="display:inline-block"><b>Phone:</b></h4>&nbsp&nbsp<h4 style="display:inline-block">65515921</h4><br>
+						<span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>&nbsp&nbsp<h4 style="display:inline-block"><b>Email:</b></h4>&nbsp&nbsp<h4 style="display:inline-block">mail@ciosa.org.in</h4><br>
+						<span class="glyphicon glyphicon-globe" aria-hidden="true"></span>&nbsp&nbsp<h4 style="display:inline-block"><b>Website:</b></h4>&nbsp&nbsp<h4 style="display:inline-block"><a href="http://www.ciosa.org.in">www.ciosa.org.in</a></h4><br>
       </div>
     </div>
 
   </div>
 </div>
     <!-- Navigation -->
-    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation" style="z-index:1">
         <div class="container">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
@@ -174,13 +172,16 @@ function populateList(data){
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">Sahayak</a>
+                <a class="navbar-brand" href="index.html" style="font-size:20px">Sahayak</a>
             </div>
+			<div>
+			  <a class="navbar-brand navbar-right" href="#" style="font-size:20px" data-toggle="modal" data-target="#myModal">CIOSA</a>
+			</div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
-                    <li>
-                        <a href="#myModal">About</a>
+					 <li>
+                        <a href="add_suggestions.html">Suggest an NGO</a>
                     </li>
                 </ul>
             </div>
@@ -196,36 +197,17 @@ function populateList(data){
 
             <div class="col-md-12">
 
-                <div class="row carousel-holder">
-
                     <div class="col-md-12">
-                        <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-                            <ol class="carousel-indicators">
-                                <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-                                <li data-target="#carousel-example-generic" data-slide-to="1"></li>
-                                <li data-target="#carousel-example-generic" data-slide-to="2"></li>
-                            </ol>
-                            <div class="carousel-inner">
-                                <div class="item active">
-                                    <img class="slide-image" src="http://placehold.it/800x300" alt="">
-                                </div>
-                                <div class="item">
-                                    <img class="slide-image" src="http://placehold.it/800x300" alt="">
-                                </div>
-                                <div class="item">
-                                    <img class="slide-image" src="http://placehold.it/800x300" alt="">
-                                </div>
-                            </div>
-                            <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
-                                <span class="glyphicon glyphicon-chevron-left"></span>
-                            </a>
-                            <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
-                                <span class="glyphicon glyphicon-chevron-right"></span>
-                            </a>
-                        </div>
+                    
+					<iframe style="width:100%; height:625px; border:2px solid black; margin-bottom:10px" src="maps.html"></iframe>
+					<!-- <div id="rhc">  </div>
+	
+	<input type="range" oninput="App.changeSearchRadious(event)" id="milesRange" value="1.5" max="50" min="0.5" style="display: none" />
+	<label id="txtRadious"></label>
+	
+					<script type="text/javascript" src="build/index.js"></script> -->
+					
                     </div>
-
-                </div>
 
                 <div class="row" id="ngo_list">
 
@@ -240,11 +222,6 @@ function populateList(data){
     </div>
     <!-- /.container -->
 
-    <!-- jQuery -->
-    <script src="js/jquery.js"></script>
-
-    <!-- Bootstrap Core JavaScript -->
-    <script src="js/bootstrap.min.js"></script>
 
 </body>
 

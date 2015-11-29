@@ -177,7 +177,6 @@
 	<script type="text/javascript">
 	
 	 $( document ).ready(function() {
-		     $('#example-getting-started').multiselect();
          	$("#add_suggestion").click(function(){
 				var area=$("#area").val();
 				var city=$("#city").val()+"+"+$("#state").val();
@@ -210,7 +209,7 @@
 									"email": $("#email").val(),
 									"website": $("#website-url").val(),
 									"desc": $("#description").val(),
-									"category": "",
+									"category":$("#category").val(),
 								}
 								
 							    console.log(mydata);

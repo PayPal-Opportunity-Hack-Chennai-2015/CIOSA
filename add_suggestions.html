@@ -208,7 +208,7 @@
 	<script type="text/javascript">
 	
 	 $( document ).ready(function() {
-		     $('#example-getting-started').multiselect();
+		    //$('#example-getting-started').multiselect();
          	$("#add_suggestion").click(function(){
 				var area=$("#area").val();
 				var city=$("#city").val()+"+"+$("#state").val();
@@ -220,7 +220,7 @@
 							if(result.results && result.results.length>=1){
 								lat = result.results[0].geometry.location.lat;
 								lon = result.results[0].geometry.location.lng; 
-								alert("Data: " + lat+","+lon);
+								//alert("Data: " + lat+","+lon);
 							
 							    var mydata={
 							         "name": $("#name").val(),
@@ -241,7 +241,7 @@
 									"email": $("#email").val(),
 									"website": $("#website-url").val(),
 									"desc": $("#description").val(),
-									"category": "",
+									"category":$("#category").val(),
 								}
 								
 							    console.log(mydata);
@@ -252,9 +252,11 @@
 									type: 'post',
 									dataType: 'json',
 									success: function (data) {
-										alert(data);
+										console.log(data);
+										alert('Success');
 									},
-									data: JSON.stringify(mydata)
+									data: JSON.stringify(mydata),
+									async: false
 								});
 							}
 						},

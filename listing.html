@@ -155,7 +155,7 @@ function populateList(data){
 		  if(typeof data[i]._source.address !=='undefined')
 		  {
 		
-          $('#ngo_list').append('<div class="col-sm-4 col-lg-4 col-md-4"><div class="panel panel-success"><div class="panel-heading"><h4><a  href="ngo.html?ngo_id='+ data[i]._id+'">'+data[i]._source.name+'</a></h4></div><div class="panel-body"><span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span>&nbsp<p style="display:inline-block">'+ data[i]._source.address.area + ', ' + data[i]._source.address.city + '</p> <br><span class="glyphicon glyphicon-earphone" aria-hidden="true"></span>&nbsp<p style="display:inline-block">'+ data[i]._source.phone +'</p> <br><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>&nbsp<p style="display:inline-block">'+ data[i]._source.email+'</p><br><span class="glyphicon glyphicon-globe" aria-hidden="true"></span>&nbsp<p style="display:inline-block">'+ data[i]._source.website+'</p></div></div></div>') 
+          $('#ngo_list').append('<div class="col-sm-4 col-lg-4 col-md-4"><div class="panel panel-default"><div class="panel-header"><h4><a  href="ngo.html?ngo_id='+ data[i]._id+'">'+data[i]._source.name+'</a></h4></div><div class="panel-body"><span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span>&nbsp<p style="display:inline-block">'+ data[i]._source.address.area + ', ' + data[i]._source.address.city + '</p> <br><span class="glyphicon glyphicon-earphone" aria-hidden="true"></span>&nbsp<p style="display:inline-block">'+ data[i]._source.phone +'</p> <br><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>&nbsp<p style="display:inline-block">'+ data[i]._source.email+'</p><br><span class="glyphicon glyphicon-globe" aria-hidden="true"></span>&nbsp<p style="display:inline-block">'+ data[i]._source.website+'</p></div></div></div>') 
 			}		  
         }
       }
@@ -216,9 +216,8 @@ function populateList(data){
                 <div class="row carousel-holder">
 
                     <div class="col-md-12">
-<iframe style="width:100%;height:300px" src="maps.html"></iframe>
                     
-					<iframe style="width:100%;height:300px" src="maps.html"></iframe>
+					<iframe style="width:100%;height:300px; border:2px solid black" src="maps.html"></iframe>
 					<!-- <div id="rhc">  </div>
 	
 	<input type="range" oninput="App.changeSearchRadious(event)" id="milesRange" value="1.5" max="50" min="0.5" style="display: none" />

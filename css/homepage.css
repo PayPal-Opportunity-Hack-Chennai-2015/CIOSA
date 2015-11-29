@@ -11,11 +11,42 @@ body {
 .slide-image {
     width: 100%;
 }
+.panel-header{
+background-color: rgba(0, 0, 0, 0.8);
+border-bottom-color: rgb(0, 0, 0);
+border-bottom-style: solid;
+border-bottom-width: 1px;
+border-left-color: rgb(0, 0, 0);
+border-right-color: rgb(0, 0, 0);
+border-top-color: rgb(0, 0, 0);
+border-top-left-radius: 3px;
+border-top-right-radius: 3px;
+box-sizing: border-box;
+color: white
+display: block;
+font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+font-size: 14px;
+line-height: 20px;
+padding-bottom: 10px;
+padding-left: 15px;
+padding-right: 15px;
+padding-top: 10px;
+}
 
+.panel-header a{
+	color:white;
+}
 .carousel-holder {
     margin-bottom: 30px;
 }
-
+	body {
+				background: url(http://thumbs.dreamstime.com/z/old-grunge-paper-background-hands-holding-19124212.jpg) no-repeat center center fixed; 
+  -		webkit-background-size: cover;
+		-moz-background-size: cover;
+		-o-background-size: cover;
+		background-size: cover;
+	}
+	
 .carousel-control,
 .item {
     border-radius: 4px;

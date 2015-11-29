@@ -27,10 +27,36 @@
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
+	<style>
+	body {
+				background: url(https://t2.ftcdn.net/jpg/00/70/91/93/500_F_70919326_FXAKb0ezBwA4ggKNsZVEigMTKl5fftXk.jpg) no-repeat center center fixed; 
+  -		webkit-background-size: cover;
+		-moz-background-size: cover;
+		-o-background-size: cover;
+		background-size: cover;
+	}
+	</style>
 </head>
 
 <body>
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
 
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">About Us</h4>
+      </div>
+      <div class="modal-body">
+        <p>CIOSA - Confederation of Indian Organisations For Service And Advocacy</p>
+		<p>A platform where people meet, share, raise voice, find resources for a better world.</p>
+		<p>Website: <a target="_blank" href="http://www.ciosa.org.in">www.ciosa.org.in</a> </p>
+      </div>
+    </div>
+
+  </div>
+</div>
     <!-- Navigation -->
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
         <div class="container">
@@ -48,11 +74,7 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <li>
-                        <a href="#">About</a>
-                    </li>
-                    
-                    <li>
-                        <a href="#">Contact</a>
+                        <a data-toggle="modal" data-target="#myModal" href="#">About</a>
                     </li>
 					 <li>
                         <a href="add_suggestions.html">Suggest an NGO</a>
@@ -66,7 +88,7 @@
 
     <!-- Page Content -->
     <div class="container">
-		<div class="row">
+		<div class="row" >
 			<div class="col-md-6 col-md-offset-3">
 				<h1>Find and post about NGOs</h1>
 			</div>
@@ -98,8 +120,7 @@
 				<ul class="dropdown-menu pull-right" id="categories">
 					<li><a href="#">Women</a></li>
 					<li><a href="#">Children</a></li>
-					<li><a href="#">Community</a></li>
-					
+					<li><a href="#">Community</a></li>					
 					<li><a href="#">Disability</a></li>
 				</ul>
 			</span>
@@ -122,32 +143,27 @@
             </div>
 
         </div>
-		
-		<div class="row" id="ngo_list">
-
-
-
-             
+		<!--
+		<div class="jumbotron">
+		  <h1>Jumbotron</h1>
 		</div>
-
-    </div>
-    <!-- /.container -->
-
-    <!--<div class="container">
+				    <div class="container">
 
         <hr>
 
-       
         <footer>
             <div class="row">
                 <div class="col-lg-12">
-                    <p>Copyright &copy; Your Website 2014</p>
+                    <p>Sahayak - Find NGOs. Spread smiles.</p>
                 </div>
             </div>
-        </footer>
+        </footer> -->
 
-    </div>-->
+    </div>
+		
+    </div>
     <!-- /.container -->
+
 
     <!-- jQuery -->
     <script src="js/jquery.js"></script>
@@ -194,9 +210,8 @@
 				for(var i=0; i< cities.length;i++){
 					
 					$('#cityList').append('<li>'+cities[i]+'</li>');
-				}*/
-				
-			  /*var categories = getCategories();
+				}
+				//var categories = getCategories();
 				
 				for(var i=0; i< categories.length;i++){
 					
@@ -207,6 +222,8 @@
 			
 
 		</script>
+		
+
 
 </body>
 

@@ -11,12 +11,12 @@ function elivated(headers,callback) {
 		} catch (e) {
     		callback(false);
   		}
-		console.log("http://LM-MAA-26500421.paypalcorp.com:9200/sahayak/login/_search?q=user:"+user+" pass:"+pass);
+		//console.log("http://LM-MAA-26500421.paypalcorp.com:9200/sahayak/login/_search?q=user:"+user+" pass:"+pass);
 
 		http.get("http://LM-MAA-26500421.paypalcorp.com:9200/sahayak/login/_search?q=user:"+user+" pass:"+pass, function(res) {
     		
     		res.on('data', function (chunk) {
-    			console.log('BODY: ' + chunk);
+    			//console.log('BODY: ' + chunk);
     			var obj = JSON.parse(chunk);
   				if(obj.hits.hits && obj.hits.hits.length > 0){
     				callback(true);
@@ -62,7 +62,7 @@ http.createServer(function(request, response) {
 
 	elivated(request.headers,function(auth){
 		
-		console.log(auth)
+		//console.log(auth)
 
 		if(!auth && !allowed(ip,url,method)) {
 			msg = "Host " + request.url + " has been denied";

@@ -96,11 +96,11 @@
 			<span class="input-group-btn">
 				<button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" id="Cbtn">Category <span class="caret"></span></button>
 				<ul class="dropdown-menu pull-right" id="categories">
-					<li><a href="#">Action</a></li>
-					<li><a href="#">Another action</a></li>
-					<li><a href="#">Something else here</a></li>
-					<li class="divider"></li>
-					<li><a href="#">Separated link</a></li>
+					<li><a href="#">Women</a></li>
+					<li><a href="#">Children</a></li>
+					<li><a href="#">Community</a></li>
+					
+					<li><a href="#">Disability</a></li>
 				</ul>
 			</span>
 			<input id="pac-input" class="form-control controls" type="text" placeholder="Enter location" style="width:50%" onfocus="googleSearch()"/>
@@ -108,7 +108,7 @@
 			<input type="text" name="query" class="form-control" placeholder="Search by name" id="searchName" style="width:50%">
 			<span class="input-group-btn">
 						
-						<button type="button" class="btn btn-primary dropdown-toggle custom" data-toggle="dropdown" onclick="search()">Search</button>
+						<button type="button" class="btn btn-primary dropdown-toggle custom" data-toggle="dropdown" onclick="search()" id="searchName">Search</button>
 				
 			</span>
 		</div>
@@ -171,9 +171,21 @@
 				var searchBox = new google.maps.places.SearchBox(input);
 			}
 			function search(){
+				var lat,lon;
 				var input = $('#pac-input').val();
-				
-
+				name = $('#searchName').val();
+				jQuery.ajax({
+					url: "http://maps.google.com/maps/api/geocode/json?address="+input,
+					success: function (result) {
+						if (result.isOk == false) alert(result.results);
+							if(result.results && result.results.length>=1){
+								lat = result.results[0].geometry.location.lat;
+								lon = result.results[0].geometry.location.lng; 
+								
+							}
+						},
+					async: false
+				});
 			   window.location = "listing.html?location="+input+"&category="+categoryChoice+"&name="+name;
 			}
 			function populateFilters(){
@@ -182,8 +194,9 @@
 				for(var i=0; i< cities.length;i++){
 					
 					$('#cityList').append('<li>'+cities[i]+'</li>');
-				}
-				//var categories = getCategories();
+				}*/
+				
+			  /*var categories = getCategories();
 				
 				for(var i=0; i< categories.length;i++){
 					

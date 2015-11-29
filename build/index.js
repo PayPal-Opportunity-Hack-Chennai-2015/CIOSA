@@ -380,7 +380,7 @@
   var markersArray = [];
 
   var mapOptions = {
-    zoom: 14,
+    zoom: 8,
     center: new google.maps.LatLng(12.9095798,80.2270612),
     disableDefaultUI: true,
     zoomControl:true,

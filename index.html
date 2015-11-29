@@ -160,15 +160,7 @@
 			var name="";
 			$(document).ready(function(){
 				populateFilters();
-				$('#locations li a').click(function(){
-					$('#Lbtn').html($(this).text());
-				    
-					locationChoice = $(this).text();
-					
-					
-					
 				
-				})
 				$('#categories li a').click(function(event){
 					categoryChoice = $(this).text();
 					$('#Cbtn').html($(this).text());
@@ -180,9 +172,9 @@
 			}
 			function search(){
 				var input = $('#pac-input').val();
- 
+				
 
-			   window.location = "listing.html?location="+locationChoice+"&category="+categoryChoice+"&name="+input;
+			   window.location = "listing.html?location="+input+"&category="+categoryChoice+"&name="+name;
 			}
 			function populateFilters(){
 				/*var cities = getCities();
@@ -190,8 +182,19 @@
 				for(var i=0; i< cities.length;i++){
 					
 					$('#cityList').append('<li>'+cities[i]+'</li>');
+				}*/
+				var xmlhttp = new XMLHttpRequest();
+			var url = "http://LM-MAA-26500421.paypalcorp.com:8080/sahayak/ngodetails/_search";
+			xmlhttp.onreadystatechange = function() {
+			if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+				var myArr = JSON.parse(xmlhttp.responseText);
+        //console.log(myArr);
+				populateCategory(myArr);
 				}
-				//var categories = getCategories();
+			};
+			xmlhttp.open("GET", url, true);
+			xmlhttp.send();
+			  /*var categories = getCategories();
 				
 				for(var i=0; i< categories.length;i++){
 					
@@ -199,7 +202,13 @@
 				}*/
 				
 			}
-			
+			function populateCategory(arr){
+			var data=arr.hits.hits;
+        for(var i=0; i< data.length;i++){
+          $('#categoryList').append('<li>'+data[i]+'</li>');
+          
+          }
+      }
 
 		</script>
 

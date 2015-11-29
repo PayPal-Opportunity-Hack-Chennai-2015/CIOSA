@@ -12,10 +12,9 @@
     <title>Sahayak</title>
 
     <!-- Bootstrap Core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-
+<link rel="stylesheet" href="css/bootstrap-multiselect.css" type="text/css"/>
     <!-- Custom CSS -->
-    <link href="css/homepage.css" rel="stylesheet">
+    <link href="css/shop-homepage.css" rel="stylesheet">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -25,6 +24,7 @@
     <![endif]-->
 	<head>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+ <script src="js/bootstrap.min.js"></script>
 </head>
 
 </head>
@@ -68,7 +68,7 @@
 
            
 
-            <div class="col-md-12" >
+            <div class="col-md-12">
 
                 <div>
 				<br>
@@ -79,14 +79,31 @@
       <input type="text" class="form-control" id="name" placeholder="Enter email">
     </div>
   </div>
-   <div class="form-group">
+  <!--
+  <div class="form-group">
     <label class="control-label col-sm-2" for="category">Category</label>
     <div class="col-sm-10">
-      <input type="text" class="form-control" id="category" placeholder="Enter categories">
+       <select id="example-getting-started" multiple="multiple">
+    <option value="women">women</option>
+    <option value="children">children</option>
+    <option value="animals">animals</option>
+    <option value="disability">disability</option>
+    <option value="community">community</option>
+    <option value="environment">environment</option>
+	    <option value="health">health</option>
+</select>
     </div>
   </div>
+  -->
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="category">Category</label>
+                        <div class="col-sm-10">
+                           <input type="text" class="form-control" id="category" placeholder="Enter categories">
+                        </div>
+                     </div>
  
 
+  
   <div class="form-group">
     <label class="control-label col-sm-2" for="line1">Address Line1</label>
     <div class="col-sm-10"> 
@@ -184,92 +201,67 @@
 
 
     <!-- Bootstrap Core JavaScript -->
-    <script src="js/bootstrap.min.js"></script>
+   
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+<script type="text/javascript" src="js/bootstrap-multiselect.js"></script>
 	<script type="text/javascript">
-	var getUrlParameter = function getUrlParameter(sParam) {
-    var sPageURL = decodeURIComponent(window.location.search.substring(1)),
-        sURLVariables = sPageURL.split('&'),
-        sParameterName,
-        i;
-
-    for (i = 0; i < sURLVariables.length; i++) {
-        sParameterName = sURLVariables[i].split('=');
-
-        if (sParameterName[0] === sParam) {
-            return sParameterName[1] === undefined ? true : sParameterName[1];
-        }
-    }
-};
-	$( document ).ready(function() {
-	var param=getUrlParameter('id');
 	
-	var myUrl='http://lm-maa-26500421.paypalcorp.com:9200/sahayak/ngodetails/';
-	myUrl=myUrl.concat(param);
-	myUrl = myUrl.toString().replace(/"/g, "");
-	//alert(myUrl);
-	
-    $.ajax({
-            url: myUrl,
-            type: 'get',
-            dataType: 'json',
-            success: function (data) {
-			//alert();
-			$("#name").val(data._source.phone);
-			$("#line1").val(data._source.line1);
-			$("#line2").val(data._source.line2);
-			$("#area").val(data._source.area);
-			$("#city").val(data._source.city);
-			$("#state").val(data._source.state);
-			$("#poc").val(data._source.poc);
-			$("#phone").val(data._source.phone);
-			$("#email").val(data._source.email);
-			$("#website").val(data._source.website);
-			$("#description").val(data._source.desc);
-    
-            }
-            
-        });
-});
-$("#add_suggestion").click(function(){
-    
-	
-	
-	var mydata={
-  "name": $("#name").val(),
-  "logo": "",
-  "address": {
-    "line1": $("#line1").val(),
-    "line2": $("#line2").val(),
-    "area": $("#area").val(),
-    "city": $("#city").val(),
-    "state": $("#state").val()
-  },
-            "location": {
-            "lat": 13.0985669,
-            "lon": 80.23366589999999
-          },
-
-  "poc": $("#poc").val(),
-  "phone": $("#phone").val(),
-  "email": $("#email").val(),
-  "website": $("#website_url").val(),
-  "desc": $("#description").val(),
-  "categories": [
-    1
-  ]
-}
-	 $.ajax({
-            url: 'http://lm-maa-26500421.paypalcorp.com:9200/sahayak/ngodetails',
-            type: 'post',
-            dataType: 'json',
-            success: function (data) {
-                alert(data);
-            },
-            data: JSON.stringify(mydata)
-        });
-	
-	alert("Submitted");
-});
+	 $( document ).ready(function() {
+		     $('#example-getting-started').multiselect();
+         	$("#add_suggestion").click(function(){
+				var area=$("#area").val();
+				var city=$("#city").val()+"+"+$("#state").val();
+				var country="IN";
+				jQuery.ajax({
+					url: "http://maps.google.com/maps/api/geocode/json?address="+area+"+"+city+"+"+country,
+					success: function (result) {
+						if (result.isOk == false) alert(result.results);
+							if(result.results && result.results.length>=1){
+								lat = result.results[0].geometry.location.lat;
+								lon = result.results[0].geometry.location.lng; 
+								alert("Data: " + lat+","+lon);
+							
+							    var mydata={
+							         "name": $("#name").val(),
+									 "logo": "",
+									 "address": {
+										"line1": $("#line1").val(),
+										"line2": $("#line2").val(),
+										"area": $("#area").val(),
+										"city": $("#city").val(),
+										"state": $("#state").val()
+									},
+									"location": {
+										"lat": lat,
+										"lon": lon
+									},
+									"poc": $("#poc").val(),
+									"phone": $("#phone").val(),
+									"email": $("#email").val(),
+									"website": $("#website-url").val(),
+									"desc": $("#description").val(),
+									"category": "",
+								}
+								
+							    console.log(mydata);
+								myUrl='http://lm-maa-26500421.paypalcorp.com:9200/sahayak/ngodetails'
+								console.log(myUrl);
+								$.ajax({
+									url: myUrl,
+									type: 'post',
+									dataType: 'json',
+									success: function (data) {
+										alert(data);
+									},
+									data: JSON.stringify(mydata)
+								});
+							}
+						},
+					async: false
+				});
+			});
+         });
+       
 </script>
 
 </body>

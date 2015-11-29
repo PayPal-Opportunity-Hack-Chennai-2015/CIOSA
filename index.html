@@ -245,18 +245,22 @@
 				var lat,lon;
 				var input = $('#pac-input').val();
 				name = $('#searchName').val();
-				jQuery.ajax({
+				if(input != ""){
+					jQuery.ajax({
 					url: "http://maps.google.com/maps/api/geocode/json?address="+input,
 					success: function (result) {
 						if (result.isOk == false) alert(result.results);
 							if(result.results && result.results.length>=1){
 								lat = result.results[0].geometry.location.lat;
 								lon = result.results[0].geometry.location.lng; 
-								
+								input=lat+" "+lon;
 							}
 						},
 					async: false
 				});
+				}
+				
+				
 			   window.location = "listing.html?location="+input+"&category="+categoryChoice+"&name="+name;
 			}
 			function populateFilters(){

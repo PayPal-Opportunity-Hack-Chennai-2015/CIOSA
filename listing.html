@@ -36,10 +36,6 @@
 	</style>
 </head>
 
-<script src="https://maps.google.com/maps/api/js?sensor=false"></script>
-
-  <script type="text/javascript">
-</script>
 
 <script>
 /*var xmlhttp = new XMLHttpRequest();
@@ -109,15 +105,39 @@ function init(){
 
 var href = window.location.href; 
 var param = parseURLParams(href);
-var location = param['location'][0] ? "location:" + param['location'][0]+'*' : "";
-var category = param['category'][0] ? "category:" + param['category'][0]+'*' : "";
-var name = param['name'][0] ? "name:" + param['name'][0]+'*' : "";
-var url = "http://lm-maa-26500421.paypalcorp.com:9200/sahayak/ngodetails/_search/?q=";
-url = url + location + ' ' + category + ' ' + name;
-console.log(url);
-xmlhttp.open("GET", url, true);
-xmlhttp.send();
+var searchLocation = param['location'][0] ;
 
+var category = param['category'][0] ;
+var name = param['name'][0]+ '*' ;
+var url = "http://lm-maa-26500421.paypalcorp.com:9200/sahayak/ngodetails/_search/?q="+name;
+//url = url + location + ' ' + category + ' ' + name;
+//console.log(url);
+//xmlhttp.open("GET", url, true);
+//xmlhttp.send();
+var data = '{"query": {    "filtered" : {        "query" : {            "bool": {                "should": [';
+
+if(category !="") {
+	
+	data = data + '{ "match": { "category": "'+category+'"}}';
+}
+data=data + "] } }";
+if( searchLocation != ""){
+	var coords = searchLocation.split(" ");
+	data = data +',"filter" : {  "geo_distance" : {  "distance" : "10km","location": { "lat": '+coords[0]+', "lon":'+coords[1]+'}}}'
+}
+data = data + "  } }}";
+console.log(data);
+
+								$.ajax({
+									url: url,
+									type: 'post',
+									dataType: 'json',
+									success: function (result) {
+										
+										populateList(result);
+									},
+									data: data
+								});
 }
 
 

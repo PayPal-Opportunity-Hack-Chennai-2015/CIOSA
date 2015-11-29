@@ -164,15 +164,18 @@
     			var posi = prop._source.location;
 				if(typeof posi !== "undefined")
 				{	
-				//alert("MAnish:"+JSON.stringify(posi));
-    			App.AddMarker(posi,prop._source.name,prop._id);}
+var p1 = new google.maps.LatLng(posi.lat, posi.lon);
+var p2 = new google.maps.LatLng(12.9095798, 80.2270612);
+var dist=calcDistance(p1,p2);
+			if(dist<30){
+    			App.AddMarker(posi,prop._source.name,prop._id);}}
 				else
 				{
 					//alert('Fail');
 					return;
 				}
     			markup += getMarkup(prop);
-    			App.AddMarker(posi,prop._source.name,prop._id);
+    		//	App.AddMarker(posi,prop._source.name,prop._id);
     		};
     		markup+="</ol>"
     	//	$("lhc").innerHTML = markup;

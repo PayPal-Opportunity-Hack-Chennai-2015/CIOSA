@@ -10,7 +10,7 @@
       <!-- Bootstrap Core CSS -->
       <link href="css/bootstrap.min.css" rel="stylesheet">
       <!-- Custom CSS -->
-      <link href="css/shop-homepage.css" rel="stylesheet">
+      <link href="css/homepage.css" rel="stylesheet">
       <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
       <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
       <!--[if lt IE 9]>
@@ -202,6 +202,7 @@
 							$("#email").val(data._source.email);
 							$("#website-url").val(data._source.website);
 							$("#description").val(data._source.desc);
+							$("#category").val(data._source.category)
 						}
                     }
                 });
@@ -241,7 +242,7 @@
 									"email": $("#email").val(),
 									"website": $("#website-url").val(),
 									"desc": $("#description").val(),
-									"category": "",
+									"category":$("#category").val(),
 									}
 								}
 							    console.log(mydata);
@@ -252,21 +253,23 @@
 								} else {
 									return;
 								}
-								$.ajax({
+								jQuery.ajax({
 									url: myUrl,
 									type: 'post',
 									dataType: 'json',
 									success: function (data) {
-										alert(data);
+										console.log(data);
 										$.ajax({
 											url: 'http://lm-maa-26500421.paypalcorp.com:9200/sahayak/temp_ngodetails/'+id,
 											type: 'DELETE',
 											success: function(result) {
 												alert("success");
-											}
+											},
+											async: false
 										});
 									},
-									data: JSON.stringify(mydata)
+									data: JSON.stringify(mydata),
+									async: false
 								});
 							}
 						},

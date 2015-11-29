@@ -212,17 +212,16 @@
                     type: 'GET',
                     dataType: 'json',
                     success: function (data) {
-						if(!data.found) {
+						if(!data.hits.hits) {
 							alert("No Data Found");
 						} else {
-							suggestions = ['NGO name','NGO name','NGO name'];
+							suggestions = data.hits.hits;
 							for(var i=0; i< suggestions.length;i++){
-								$('#suggestionsList').append('<a href="approve_ngo?id='+suggestions[i]._id+'" class="list-group-item" id='+suggestions[i]._id+'>'+suggestions[i].name+'</a>');
+								$('#suggestionsList').append('<a href="approve_ngo.html?id='+suggestions[i]._id+'" class="list-group-item" id='+suggestions[i]._id+'>'+suggestions[i]._source.name+'</a>');
 							}
 						}
-                });
-
-				
+					}
+				});
 				
 			}
 			

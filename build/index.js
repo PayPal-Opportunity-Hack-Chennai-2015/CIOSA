@@ -216,7 +216,7 @@
     		var record = JSON.parse(resp.responseText);
     		//alert(record);
     		var html =[];
-    		html.push('<table cellspacing=\'0\'><thead></thead>');
+    		//html.push('<table cellspacing=\'0\'><thead></thead>');
     		var s = record._source;
     		for(var o in s)
     		{
@@ -225,20 +225,27 @@
 					//alert("MAni");
 					//do nothing
 				}
-				else if(o == 'address')
+				else if(o == 'name')
 				{
-					html.push('<tr><td>'+o+'</td><td>'+s[o].line1+','+s[o].line2+','+s[o].area+','+s[o].city+','+s[o].state+'</td></tr>');
+					html.push('<div class="panel panel-success text-center"><div class="panel-header"><h4>'+s[o]+'</h4></div><div class="panel-body">');
+				}
+				else if (o == 'phone' ) {
+					html.push('<span class="glyphicon glyphicon-earphone" aria-hidden="true"></span>&nbsp<p style="display:inline-block">'+ s[o] +'</p> <br>');
+				} 
+				else if (o == 'email') {
+					html.push('<span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>&nbsp<p style="display:inline-block"><a href="mailto:'+ s[o]+'?Subject=Query">'+s[o]+'</a></p><br>');
+				}
+				else if (o=='website'){
+					html.push('<span class="glyphicon glyphicon-globe" aria-hidden="true"></span>&nbsp<p style="display:inline-block"><a href="http://'+ s[o]+'">'+s[o]+'</a></p><br>');
 				}
 				
     			//if(o == 'location'){
     				//html.push('<tr><td>Latitude</td><td>' + s[o].lat + //'</td></tr>');
     				//html.push('<tr><td>Longitude</td><td>' + s[o].lon + //'</td></tr>');
     			//}
-    			else{
-    				html.push('<tr><td>' + o + '</td><td>' + s[o] + '</td></tr>');
-    			}
+    			
     		}
-    		html.push('</table>')
+    		html.push('</div></div>');
     		showWindow(marker,'<b>'+ html.join('') + '</b>');
     	});
     }
